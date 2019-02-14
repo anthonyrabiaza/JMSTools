@@ -13,7 +13,7 @@ public class Main {
 		options.put("sendandwait", 		org.antsoftware.messaging.wrapper.scenarios.SendAndWait.class);
 		
 		if(args.length < 2) {
-			System.out.println("Usage: java -jar jmswrapper<version>.jar <scenario> <propertiesFile>");
+			System.out.println("Usage: java -jar jmstoolsr<version>.jar <scenario> <propertiesFile>");
 			System.out.print("\t where scenario = ");
 			boolean first = true;
 			for (Iterator<String> iterator = options.keySet().iterator(); iterator.hasNext();) {
@@ -25,6 +25,7 @@ public class Main {
 				first = false;
 			}
 			System.out.println();
+			System.out.print("\t You can add -Dbenchmark=true for receiveandreply to use a progress bar");
 		} else {
 			try {
 				Class<?> scenario = options.get(args[0]);

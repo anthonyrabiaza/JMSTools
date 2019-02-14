@@ -13,4 +13,4 @@ You can easily use JMSTools as a backend consumer in Message-oriented middleware
 
 ## Getting Started
 
-Please download the [latest library](jmstools-0.1.jar?raw=true) and the property files [solace](src/solace.properties?raw=true) and [activemq](src/activemq.properties?raw=true).
+Please download the [latest library](jmstools-0.2.jar?raw=true) and the property files [solace](src/solace.properties?raw=true) and [activemq](src/activemq.properties?raw=true).
