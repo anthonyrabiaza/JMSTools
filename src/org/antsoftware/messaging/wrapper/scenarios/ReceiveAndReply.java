@@ -14,6 +14,7 @@ import org.antsoftware.messaging.wrapper.AbstractGenericSender;
 import org.antsoftware.messaging.wrapper.Helper;
 import org.antsoftware.messaging.wrapper.JMSBroker;
 import org.antsoftware.messaging.wrapper.JMSSender;
+import org.antsoftware.messaging.wrapper.tools.BenchmarkingTools;
 
 public class ReceiveAndReply extends AbstractGenericReceiver {
 
@@ -31,7 +32,7 @@ public class ReceiveAndReply extends AbstractGenericReceiver {
 			String requestMessage 	= textMessage.getText();
 
 			if(!benchmarkingTools.isEnabled()) {
-				System.out.println("INFO: Got a message " + ((logMessage)?("(" + requestMessage + ")"):"") + " at " + new Date());
+				System.out.println("INFO: Got a message" + ((logMessage)?("(" + requestMessage + ")"):"") + ", destination: " + textMessage.getJMSDestination() + " at " + new Date());
 				System.out.println("INFO: Replying ...");
 			} else {
 				benchmarkingTools.newTrigger();
@@ -47,6 +48,7 @@ public class ReceiveAndReply extends AbstractGenericReceiver {
 			newMessage.setJMSCorrelationID(jmsCorrelationID);
 
 			sender.sendMessage(sender.getSession().createQueue(getProperties().getProperty("replyDestination")), newMessage);
+			message.acknowledge();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

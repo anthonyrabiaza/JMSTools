@@ -13,7 +13,12 @@ public abstract class AbstractGenericGetter implements JMSGetter {
 	
 	public MessageConsumer getConsumer(String queueName, String selector) throws Exception {
 		Destination destination = broker.getSession().createQueue(queueName);
-		MessageConsumer consumer = broker.getSession().createConsumer(destination, selector);
+		MessageConsumer consumer;
+		if(selector == null) {
+			consumer = broker.getSession().createConsumer(destination);
+		} else {
+			consumer = broker.getSession().createConsumer(destination, selector);
+		}
 		broker.getConnection().start();
 		return consumer;
 	}

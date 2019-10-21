@@ -3,22 +3,17 @@ package org.antsoftware.messaging.wrapper.impl;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Session;
 import javax.naming.InitialContext;
 
-import org.antsoftware.messaging.wrapper.JMSBroker;
+import org.antsoftware.messaging.wrapper.AbstractBroker;
 
-public class GenericJNDI implements JMSBroker {
+public class GenericJNDI extends AbstractBroker {
 	
-	Connection connection;
-	Properties properties;
-	Session session;
-
 	@Override
 	public void init(Properties properties) throws Exception {
-		this.properties = properties;
+		super.init(properties);
 		
 		Hashtable<String,Object> environment = new Hashtable<String,Object>();
 		environment.put(InitialContext.SECURITY_PRINCIPAL, properties.getProperty("userName"));
@@ -34,29 +29,12 @@ public class GenericJNDI implements JMSBroker {
 				environment.put(listProperties[i], properties.getProperty(key));
 			}
 		}
+		
 		InitialContext initialContext = new InitialContext(environment);
-
 		ConnectionFactory factory = (ConnectionFactory)initialContext.lookup(properties.getProperty("connectionFactoryName"));
-
-		connection = factory.createConnection();
-
-		session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		this.setConnection(factory.createConnection());
+		this.setSession(getConnection().createSession(false, Session.CLIENT_ACKNOWLEDGE));
 		
 		System.out.println("INFO: GenericJNDI Broker initialized with Class (" + properties.getProperty("initialContextFactory") + ")");
-	}
-	
-	@Override
-	public Properties getProperties() {
-		return properties;
-	}
-
-	@Override
-	public Connection getConnection() {
-		return connection;
-	}
-
-	@Override
-	public Session getSession() {
-		return session;
 	}
 }

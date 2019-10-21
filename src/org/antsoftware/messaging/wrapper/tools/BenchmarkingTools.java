@@ -1,4 +1,4 @@
-package org.antsoftware.messaging.wrapper.scenarios;
+package org.antsoftware.messaging.wrapper.tools;
 
 import java.util.Date;
 
