@@ -1,5 +1,8 @@
 package org.antsoftware.messaging.wrapper;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class Helper {
@@ -7,7 +10,11 @@ public class Helper {
 	static public Properties getProperties(String filename) throws Exception {
 		Properties prop = new Properties();
 		System.out.println("INFO: Looking for " + filename + " ...");
-		prop.load(Helper.class.getClassLoader().getResourceAsStream(filename));
+		InputStream inputStream = Helper.class.getClassLoader().getResourceAsStream(filename);
+		if(inputStream==null) {
+			inputStream = new FileInputStream(new File(filename));
+		}
+		prop.load(inputStream);
 		System.out.println("INFO: File found");
 		return prop;
 	}

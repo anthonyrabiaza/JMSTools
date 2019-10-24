@@ -13,6 +13,7 @@ public class Main {
 		options.put("receiveandforwardtohttp", 	org.antsoftware.messaging.wrapper.scenarios.ReceiveAndForwardToHTTP.class);
 		options.put("sendandwait", 				org.antsoftware.messaging.wrapper.scenarios.SendAndWait.class);
 		options.put("send", 					org.antsoftware.messaging.wrapper.scenarios.Send.class);
+		options.put("wait", 					org.antsoftware.messaging.wrapper.scenarios.Wait.class);
 		
 		if(args.length < 2) {
 			System.out.println("Usage: java -jar jmstools<version>.jar <scenario> <propertiesFile>");

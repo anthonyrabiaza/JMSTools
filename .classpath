@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="conf"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="G:/My Drive/lib/activemq/5.15/activemq-client-5.15.2.jar" sourcepath="C:/Users/Ant/AppData/Local/Temp/.org.sf.feeling.decompiler1547620603269/source/activemq-client-5.15.2-sources.jar"/>
 	<classpathentry kind="lib" path="G:/My Drive/lib/activemq/5.15/geronimo-j2ee-management_1.1_spec-1.0.1.jar"/>
