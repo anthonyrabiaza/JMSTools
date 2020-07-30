@@ -3,6 +3,9 @@ package org.antsoftware.messaging.wrapper;
 import javax.jms.Destination;
 import javax.jms.MessageConsumer;
 
+import org.antsoftware.messaging.wrapper.interfaces.JMSBroker;
+import org.antsoftware.messaging.wrapper.interfaces.JMSGetter;
+
 public abstract class AbstractGenericGetter implements JMSGetter {
 	
 	JMSBroker broker;

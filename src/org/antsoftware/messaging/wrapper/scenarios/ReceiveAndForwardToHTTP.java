@@ -9,9 +9,9 @@ import javax.jms.Message;
 import javax.jms.TextMessage;
 
 import org.antsoftware.messaging.wrapper.AbstractGenericReceiver;
-import org.antsoftware.messaging.wrapper.Helper;
-import org.antsoftware.messaging.wrapper.JMSBroker;
+import org.antsoftware.messaging.wrapper.interfaces.JMSBroker;
 import org.antsoftware.messaging.wrapper.tools.BenchmarkingTools;
+import org.antsoftware.messaging.wrapper.tools.Helper;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;

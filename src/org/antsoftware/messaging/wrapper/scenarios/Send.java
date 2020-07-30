@@ -1,5 +1,6 @@
 package org.antsoftware.messaging.wrapper.scenarios;
 
+import java.util.Date;
 import java.util.Properties;
 
 import javax.jms.Message;
@@ -8,9 +9,10 @@ import javax.jms.Queue;
 import javax.jms.TextMessage;
 
 import org.antsoftware.messaging.wrapper.AbstractGenericSender;
-import org.antsoftware.messaging.wrapper.Helper;
-import org.antsoftware.messaging.wrapper.JMSBroker;
-import org.antsoftware.messaging.wrapper.JMSSender;
+import org.antsoftware.messaging.wrapper.impl.GenericJNDI;
+import org.antsoftware.messaging.wrapper.interfaces.JMSBroker;
+import org.antsoftware.messaging.wrapper.interfaces.JMSSender;
+import org.antsoftware.messaging.wrapper.tools.Helper;
 
 public class Send {
 
@@ -31,6 +33,20 @@ public class Send {
 				producer.close();
 			}
 		};
+		
+		System.out.println("INFO: Ready!");
+
+		TextMessage newMessage = sender.getSession().createTextMessage("<message>Bonjour " + new Date() + "</message>");
+		Queue queue;
+		if(broker instanceof GenericJNDI) {
+			queue = (Queue)((GenericJNDI)broker).getInitialContext().lookup(broker.getProperties().getProperty("receiverDestination"));
+		} else {
+			queue = sender.getSession().createQueue(broker.getProperties().getProperty("receiverDestination"));
+		}
+		sender.sendMessage(queue, newMessage);
+		String msgId = newMessage.getJMSMessageID();
+
+		System.out.println("INFO: ID of Message sent: " + msgId);
 		
 		System.out.println("INFO: Done");
 	}

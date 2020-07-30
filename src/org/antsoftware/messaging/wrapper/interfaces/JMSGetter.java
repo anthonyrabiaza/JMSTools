@@ -1,4 +1,4 @@
-package org.antsoftware.messaging.wrapper;
+package org.antsoftware.messaging.wrapper.interfaces;
 
 import javax.jms.Message;
 

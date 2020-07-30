@@ -11,10 +11,11 @@ import javax.jms.TextMessage;
 
 import org.antsoftware.messaging.wrapper.AbstractGenericReceiver;
 import org.antsoftware.messaging.wrapper.AbstractGenericSender;
-import org.antsoftware.messaging.wrapper.Helper;
-import org.antsoftware.messaging.wrapper.JMSBroker;
-import org.antsoftware.messaging.wrapper.JMSSender;
+import org.antsoftware.messaging.wrapper.impl.GenericJNDI;
+import org.antsoftware.messaging.wrapper.interfaces.JMSBroker;
+import org.antsoftware.messaging.wrapper.interfaces.JMSSender;
 import org.antsoftware.messaging.wrapper.tools.BenchmarkingTools;
+import org.antsoftware.messaging.wrapper.tools.Helper;
 
 public class ReceiveAndReply extends AbstractGenericReceiver {
 
@@ -47,7 +48,13 @@ public class ReceiveAndReply extends AbstractGenericReceiver {
 			}
 			newMessage.setJMSCorrelationID(jmsCorrelationID);
 
-			sender.sendMessage(sender.getSession().createQueue(getProperties().getProperty("replyDestination")), newMessage);
+			Queue queue;
+			if(broker instanceof GenericJNDI) {
+				queue = (Queue)((GenericJNDI)broker).getInitialContext().lookup(broker.getProperties().getProperty("replyDestination"));
+			} else {
+				queue = sender.getSession().createQueue(broker.getProperties().getProperty("replyDestination"));
+			}
+			sender.sendMessage(queue, newMessage);
 			message.acknowledge();
 		} catch (Exception e) {
 			e.printStackTrace();

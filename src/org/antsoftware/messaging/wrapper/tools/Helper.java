@@ -1,4 +1,4 @@
-package org.antsoftware.messaging.wrapper;
+package org.antsoftware.messaging.wrapper.tools;
 
 import java.io.File;
 import java.io.FileInputStream;

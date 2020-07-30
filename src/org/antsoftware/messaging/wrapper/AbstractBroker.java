@@ -5,6 +5,8 @@ import java.util.Properties;
 import javax.jms.Connection;
 import javax.jms.Session;
 
+import org.antsoftware.messaging.wrapper.interfaces.JMSBroker;
+
 public abstract class AbstractBroker implements JMSBroker {
 	
 	Connection connection;

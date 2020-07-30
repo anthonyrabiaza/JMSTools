@@ -11,6 +11,8 @@ import org.antsoftware.messaging.wrapper.AbstractBroker;
 
 public class GenericJNDI extends AbstractBroker {
 	
+	InitialContext initialContext;
+	
 	@Override
 	public void init(Properties properties) throws Exception {
 		super.init(properties);
@@ -30,11 +32,15 @@ public class GenericJNDI extends AbstractBroker {
 			}
 		}
 		
-		InitialContext initialContext = new InitialContext(environment);
+		initialContext = new InitialContext(environment);
 		ConnectionFactory factory = (ConnectionFactory)initialContext.lookup(properties.getProperty("connectionFactoryName"));
 		this.setConnection(factory.createConnection());
 		this.setSession(getConnection().createSession(false, Session.CLIENT_ACKNOWLEDGE));
 		
 		System.out.println("INFO: GenericJNDI Broker initialized with Class (" + properties.getProperty("initialContextFactory") + ")");
+	}
+	
+	public InitialContext getInitialContext() {
+		return initialContext;
 	}
 }

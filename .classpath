@@ -4,7 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="G:/My Drive/lib/activemq/5.15/activemq-client-5.15.2.jar" sourcepath="C:/Users/Ant/AppData/Local/Temp/.org.sf.feeling.decompiler1547620603269/source/activemq-client-5.15.2-sources.jar"/>
 	<classpathentry kind="lib" path="G:/My Drive/lib/activemq/5.15/geronimo-j2ee-management_1.1_spec-1.0.1.jar"/>
-	<classpathentry kind="lib" path="G:/My Drive/lib/activemq/5.15/geronimo-jms_1.1_spec-1.1.1.jar" sourcepath="C:/Users/Ant/AppData/Local/Temp/.org.sf.feeling.decompiler1571621271735/source/geronimo-jms_1.1_spec-1.1.1-sources-1571622991668.jar"/>
+	<classpathentry kind="lib" path="G:/My Drive/lib/activemq/5.15/geronimo-jms_1.1_spec-1.1.1.jar" sourcepath="C:/Users/Ant/AppData/Local/Temp/.org.sf.feeling.decompiler1596079844804/source/geronimo-jms_1.1_spec-1.1.1-sources-1596085209112.jar"/>
 	<classpathentry kind="lib" path="G:/My Drive/lib/activemq/5.15/hawtbuf-1.11.jar"/>
 	<classpathentry kind="lib" path="G:/My Drive/lib/activemq/5.15/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="lib" path="G:/My Drive/lib/solace/sol-jms-10.2.2/lib/commons-lang-2.6.jar"/>
@@ -28,5 +28,8 @@
 	<classpathentry kind="lib" path="G:/My Drive/lib/sonicmq/sonic_Client.jar"/>
 	<classpathentry kind="lib" path="G:/My Drive/lib/sonicmq/sonic_Crypto.jar"/>
 	<classpathentry kind="lib" path="G:/My Drive/lib/sonicmq/sonic_XA.jar"/>
+	<classpathentry kind="lib" path="G:/My Drive/lib/apache-qpid-jms-6.4.0/apache-qpid-jms-amqp-0-x-6.4.0-bin/lib/geronimo-jms_1.1_spec-1.1.1.jar"/>
+	<classpathentry kind="lib" path="G:/My Drive/lib/apache-qpid-jms-6.4.0/apache-qpid-jms-amqp-0-x-6.4.0-bin/lib/qpid-client-6.4.0.jar"/>
+	<classpathentry kind="lib" path="G:/My Drive/lib/apache-qpid-jms-6.4.0/apache-qpid-jms-amqp-0-x-6.4.0-bin/lib/slf4j-api-1.7.30.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -10,10 +10,11 @@ import javax.jms.TextMessage;
 
 import org.antsoftware.messaging.wrapper.AbstractGenericGetter;
 import org.antsoftware.messaging.wrapper.AbstractGenericSender;
-import org.antsoftware.messaging.wrapper.Helper;
-import org.antsoftware.messaging.wrapper.JMSBroker;
-import org.antsoftware.messaging.wrapper.JMSGetter;
-import org.antsoftware.messaging.wrapper.JMSSender;
+import org.antsoftware.messaging.wrapper.impl.GenericJNDI;
+import org.antsoftware.messaging.wrapper.interfaces.JMSBroker;
+import org.antsoftware.messaging.wrapper.interfaces.JMSGetter;
+import org.antsoftware.messaging.wrapper.interfaces.JMSSender;
+import org.antsoftware.messaging.wrapper.tools.Helper;
 
 public class SendAndWait {
 
@@ -50,7 +51,13 @@ public class SendAndWait {
 		System.out.println("INFO: Ready!");
 
 		TextMessage newMessage = sender.getSession().createTextMessage("<message>Bonjour " + new Date() + "</message>");
-		sender.sendMessage(sender.getSession().createQueue(broker.getProperties().getProperty("receiverDestination")), newMessage);
+		Queue queue;
+		if(broker instanceof GenericJNDI) {
+			queue = (Queue)((GenericJNDI)broker).getInitialContext().lookup(broker.getProperties().getProperty("receiverDestination"));
+		} else {
+			queue = sender.getSession().createQueue(broker.getProperties().getProperty("receiverDestination"));
+		}
+		sender.sendMessage(queue, newMessage);
 		String msgId = newMessage.getJMSMessageID();
 
 		System.out.println("INFO: ID of Message sent: " + msgId);

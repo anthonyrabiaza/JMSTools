@@ -14,8 +14,8 @@ public class SonicMQBroker extends AbstractBroker {
 	@Override
 	public void init(Properties properties) throws Exception {
 		super.init(properties);
-		
-		QueueConnectionFactory factory = new QueueConnectionFactory(properties.getProperty("brokerUrl"), "receiver", properties.getProperty("userName"), properties.getProperty("password"));
+		//Put "receiver" to null to run multiple instances
+		QueueConnectionFactory factory = new QueueConnectionFactory(properties.getProperty("brokerUrl"), null, properties.getProperty("userName"), properties.getProperty("password"));
 		this.setConnection(factory.createQueueConnection());
 		this.setSession(((QueueConnection)getConnection()).createQueueSession(false, Session.CLIENT_ACKNOWLEDGE));  
 		
